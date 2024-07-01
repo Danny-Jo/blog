@@ -1,15 +1,19 @@
-import React from "react";
-import { Button } from "./ui/button";
-import { ThemeToggle } from "./theme-toggle";
-import { Separator } from "./ui/separator";
-import { LinkData } from "@/assets/data/types";
-import linkData from "@/assets/data/link.json";
-import GithubMarkIcon from "@/assets/images/svg/github-mark.svg";
-import Link from "next/link";
-import { bitter, pacifico, merriweather } from "@/app/fonts";
+import React from 'react';
+import { Button } from './ui/button';
+import { ThemeToggle } from './theme-toggle';
+import { Separator } from './ui/separator';
+import { LinkData, PathData } from '@/assets/data/types';
+import linkData from '@/assets/data/link.json';
+import pathData from '@/assets/data/path.json';
+import GithubMarkIcon from '@/assets/images/svg/github-mark.svg';
+import Link from 'next/link';
+import { bitter, pacifico, merriweather, inter } from '@/app/fonts';
 
 export const Header = () => {
   const link: LinkData = linkData;
+  const path: PathData = pathData;
+
+  const fonts = [inter, merriweather, pacifico];
 
   return (
     <header className="h-14 px-6 w-full flex fixed top-0 z-10 bg-opacity-50 backdrop-blur">
@@ -20,19 +24,15 @@ export const Header = () => {
           </div>
         </Link>
         <nav className="flex gap-2 items-center">
-          <Link href="/article">
-            <Button variant="ghost">Article</Button>
-          </Link>
-          <Link href="/TIL">
-            <Button variant="ghost">
-              <span className={merriweather.className}>TIL</span>
-            </Button>
-          </Link>
-          <Link href="/ingsta">
-            <Button variant="ghost">
-              <span className={pacifico.className}>Ingstagram</span>
-            </Button>
-          </Link>
+          {path.map((data, index) => (
+            <Link href={data.href} key={data.href}>
+              <Button variant="ghost">
+                <span className={fonts[index % path.length].className}>
+                  {data.name}
+                </span>
+              </Button>
+            </Link>
+          ))}
           <Separator orientation="vertical" className="h-7" />
           <ThemeToggle />
           <a href={link.github} target="_blank" rel="noopener noreferrer">
