@@ -1,3 +1,6 @@
+import { ArticleBox } from '@/components/article-box';
+import ArticleCard from '@/components/article-card';
+
 export default async function Home() {
   const { NOTION_API_TOKEN, NOTION_VERSION, NOTION_DB_ARTICLE_ID } =
     process.env;
@@ -14,17 +17,23 @@ export default async function Home() {
       cache: 'no-store',
     }
   );
+
   const data = await res.json();
 
   const list = (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-[48px] max-w-[700px]">
       {data.results.map((page: any) => (
-        <h1 key={page.id} className="text-md">
-          {page.properties.title.title[0].text.content}
-        </h1>
+        <ArticleCard page={page} key={page.id} />
       ))}
     </div>
   );
 
-  return <>{list}</>;
+  const sidebar = (
+    <div className="px-6 pb-12">
+      <ArticleBox title="추천하는 글" />
+      <ArticleBox title="인기있는 글" />
+    </div>
+  );
+
+  return <div className="flex justify-evenly min-h-12">{list}</div>;
 }

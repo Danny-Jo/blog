@@ -17,7 +17,7 @@ export const Header = () => {
 
   return (
     <header className="h-14 px-6 w-full flex fixed top-0 z-10 bg-opacity-50 backdrop-blur">
-      <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between">
+      <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between">
         <Link href="/" aria-label="Danny-Jo Blog">
           <div className="flex items-center gap-2 font-custom">
             <span className={`${bitter.className} text-3xl`}>Danny-Jo</span>
