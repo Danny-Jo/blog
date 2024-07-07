@@ -26,7 +26,7 @@ const ArticleCard = ({ page }: Props) => {
               placeholder="blur"
               blurDataURL="https://www.google.com/url?sa=i&url=https%3A%2F%2Fkr.freepik.com%2Fpremium-photo%2Fnight-sky-beyond-space-wallpaper-is-computer-generated-image-star-field-nebula_42881924.htm&psig=AOvVaw04ycWQFkYwrUEcNVrhKJCg&ust=1720197488268000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCIDqmJPpjYcDFQAAAAAdAAAAABAE"
               className="rounded-[20px]"
-              onLoadingComplete={() => setLoading(false)}
+              onLoad={() => setLoading(false)}
             />
           </AspectRatio>
         </div>
