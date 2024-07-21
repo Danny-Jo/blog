@@ -7,7 +7,8 @@ const Giscus = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { resolvedTheme } = useTheme();
 
-  const theme = resolvedTheme === 'dark' ? 'dark' : 'dark';
+  const theme =
+    resolvedTheme === 'dark' ? 'dark_tritanopia' : 'light_tritanopia';
 
   useEffect(() => {
     if (!ref.current || ref.current.hasChildNodes()) return;
@@ -18,9 +19,9 @@ const Giscus = () => {
     scriptElem.crossOrigin = 'anonymous';
 
     scriptElem.setAttribute('data-repo', 'Danny-Jo/blog');
-    scriptElem.setAttribute('data-repo-id', 'R_kgDOMVP-fg');
+    scriptElem.setAttribute('data-repo-id', 'R_kgDOMPvNSA');
     scriptElem.setAttribute('data-category', 'Comments');
-    scriptElem.setAttribute('data-category-id', 'DIC_kwDOMVP-fs4CgviP');
+    scriptElem.setAttribute('data-category-id', 'DIC_kwDOMPvNSM4ChDVe');
     scriptElem.setAttribute('data-mapping', 'pathname');
     scriptElem.setAttribute('data-strict', '0');
     scriptElem.setAttribute('data-reactions-enabled', '1');
