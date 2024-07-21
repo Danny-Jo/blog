@@ -1,34 +1,27 @@
 import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 import '@/styles/globals.css';
-import { Inter as FontSans } from 'next/font/google';
-import { ThemeProvider } from '@/components/theme-provider';
-import { cn } from '@/lib/utils';
-import { Header } from '@/components/header';
+import ThemeProvider from '@/components/theme-provider';
+import Header from '@/components/header';
+import Footer from '@/components/footer';
 import MainContainer from '@/components/main-container';
+import metadataJson from '@/data/metadata.json';
 
-const fontSans = FontSans({
-  subsets: ['latin'],
-  variable: '--font-sans',
-});
+const inter = Inter({ subsets: ['latin'] });
+
+interface RootLayoutProps {
+  children: React.ReactNode;
+}
 
 export const metadata: Metadata = {
-  title: 'Danny-Jo',
-  description: 'blog by danny jo',
+  title: metadataJson.title,
+  description: metadataJson.description,
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+const RootLayout = ({ children }: RootLayoutProps) => {
   return (
-    <html lang="en" suppressHydrationWarning className="overflow-y-scroll">
-      <body
-        className={cn(
-          'min-h-screen bg-background font-sans antialiased',
-          fontSans.variable
-        )}
-      >
+    <html suppressHydrationWarning>
+      <body className={inter.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -36,11 +29,12 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <div className="pt-14">
-            <MainContainer>{children}</MainContainer>
-          </div>
+          <MainContainer>{children}</MainContainer>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;
